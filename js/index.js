@@ -116,19 +116,36 @@ window.addEventListener("load", function () {
                     let index = Number.parseInt($(this).attr("data-index"));
                     let theloai = $(this).attr("data-theloai");
                     if (theloai === "phimChieuRap" || theloai === "phimLe") {
-                        let movieName, movieUrl;
-                        if (theloai === "phimChieuRap") {
-                            movieName = phimChieuRap[index].title;
-                            movieUrl = phimChieuRap[index].episode[0].url;
-                        } else {
-                            movieName = phimLe[index].title;
-                            movieUrl = phimLe[index].episode[0].url;
-                        }
-                        $(".movies-iframe").attr("src", movieUrl);
-                        $(".movies-name").html(
-                            "XEM PHIM " + movieName.toUpperCase()
-                        );
+                        let movieName, movieUrl, episodes;
+
                         $(".movies-list-title").fadeOut(0);
+
+                        if (theloai === "phimChieuRap") {
+                            episodes = phimChieuRap[index].episode;
+                        } else {
+                            episodes = phimLe[index].episode;
+                        }
+
+                        if (episodes.length > 0) {
+                            if (theloai === "phimChieuRap") {
+                                movieName = phimChieuRap[index].title;
+                                movieUrl = phimChieuRap[index].episode[0].url;
+                            } else {
+                                movieName = phimLe[index].title;
+                                movieUrl = phimLe[index].episode[0].url;
+                            }
+
+                            console.log(theloai, index);
+                            $(".movies-iframe").attr("src", movieUrl);
+                            $(".movies-name").html(
+                                "XEM PHIM " + movieName.toUpperCase()
+                            );
+                        } else {
+                            $(".movies-name").html(
+                                "PHIM HIỆN ĐANG ĐƯỢC CẬP NHẬT, VUI LÒNG QUAY LẠI SAU"
+                            );
+                            $(".movies-details").fadeOut(0);
+                        }
                     }
 
                     if (theloai === "phimBo" || theloai === "phimHoatHinh") {
@@ -377,6 +394,12 @@ window.addEventListener("load", function () {
                                     ".timKiem-list"
                                 );
                             }
+                            deactivateControlButton(
+                                phimTimKiemIndex,
+                                ketQuaTimKiem,
+                                ".button-timkiem-prev",
+                                ".button-timkiem-next"
+                            );
                             addClickEventForfilmItems();
                         });
 
@@ -396,6 +419,12 @@ window.addEventListener("load", function () {
                                     ".timKiem-list"
                                 );
                             }
+                            deactivateControlButton(
+                                phimTimKiemIndex,
+                                ketQuaTimKiem,
+                                ".button-timkiem-prev",
+                                ".button-timkiem-next"
+                            );
                             addClickEventForfilmItems();
                         });
 
@@ -452,7 +481,13 @@ window.addEventListener("load", function () {
             "phimHoatHinh"
         );
 
-        function controlFilms(phimIndex, phimList, phimListName, isIncrease) {
+        function controlFilms(
+            phimIndex,
+            phimList,
+            phimListName,
+            isIncrease,
+            type
+        ) {
             if (
                 phimIndex < phimList.length / NUMBER_FILM_PER_PAGE - 1 ||
                 phimIndex >= 0
@@ -471,10 +506,25 @@ window.addEventListener("load", function () {
                     phimIndex,
                     NUMBER_FILM_PER_PAGE,
                     phimList,
-                    phimListName
+                    phimListName,
+                    type
                 );
             }
             return phimIndex;
+        }
+
+        function deactivateControlButton(
+            phimIndex,
+            phimList,
+            buttonClassNamePrev,
+            buttonClassNameNext
+        ) {
+            if (phimIndex >= phimList.length / NUMBER_FILM_PER_PAGE - 1)
+                $(buttonClassNameNext).addClass("deactive");
+            else $(buttonClassNameNext).removeClass("deactive");
+
+            if (phimIndex === 0) $(buttonClassNamePrev).addClass("deactive");
+            else $(buttonClassNamePrev).removeClass("deactive");
         }
 
         $(".button-phimbo-next").click(function () {
@@ -482,7 +532,14 @@ window.addEventListener("load", function () {
                 phimBoIndex,
                 phimBo,
                 ".phimBo-list",
-                true
+                true,
+                "phimBo"
+            );
+            deactivateControlButton(
+                phimBoIndex,
+                phimBo,
+                ".button-phimbo-prev",
+                ".button-phimbo-next"
             );
         });
         $(".button-phimbo-prev").click(function () {
@@ -490,7 +547,14 @@ window.addEventListener("load", function () {
                 phimBoIndex,
                 phimBo,
                 ".phimBo-list",
-                false
+                false,
+                "phimBo"
+            );
+            deactivateControlButton(
+                phimBoIndex,
+                phimBo,
+                ".button-phimbo-prev",
+                ".button-phimbo-next"
             );
         });
 
@@ -499,7 +563,14 @@ window.addEventListener("load", function () {
                 phimLeIndex,
                 phimLe,
                 ".phimLe-list",
-                true
+                true,
+                "phimLe"
+            );
+            deactivateControlButton(
+                phimLeIndex,
+                phimLe,
+                ".button-phimle-prev",
+                ".button-phimle-next"
             );
         });
 
@@ -508,7 +579,14 @@ window.addEventListener("load", function () {
                 phimLeIndex,
                 phimLe,
                 ".phimLe-list",
-                false
+                false,
+                "phimLe"
+            );
+            deactivateControlButton(
+                phimLeIndex,
+                phimLe,
+                ".button-phimle-prev",
+                ".button-phimle-next"
             );
         });
 
@@ -517,7 +595,14 @@ window.addEventListener("load", function () {
                 phimChieuRapIndex,
                 phimChieuRap,
                 ".phimChieuRap-list",
-                true
+                true,
+                "phimChieuRap"
+            );
+            deactivateControlButton(
+                phimChieuRapIndex,
+                phimChieuRap,
+                ".button-phimchieurap-prev",
+                ".button-phimchieurap-next"
             );
         });
         $(".button-phimchieurap-prev").click(function () {
@@ -525,7 +610,14 @@ window.addEventListener("load", function () {
                 phimChieuRapIndex,
                 phimChieuRap,
                 ".phimChieuRap-list",
-                false
+                false,
+                "phimChieuRap"
+            );
+            deactivateControlButton(
+                phimChieuRapIndex,
+                phimChieuRap,
+                ".button-phimchieurap-prev",
+                ".button-phimchieurap-next"
             );
         });
 
@@ -534,7 +626,14 @@ window.addEventListener("load", function () {
                 phimHoatHinhIndex,
                 phimHoatHinh,
                 ".phimHoatHinh-list",
-                true
+                true,
+                "phimHoatHinh"
+            );
+            deactivateControlButton(
+                phimHoatHinhIndex,
+                phimHoatHinh,
+                ".button-phimhoathinh-prev",
+                ".button-phimhoathinh-next"
             );
         });
         $(".button-phimhoathinh-prev").click(function () {
@@ -542,7 +641,14 @@ window.addEventListener("load", function () {
                 phimHoatHinhIndex,
                 phimHoatHinh,
                 ".phimHoatHinh-list",
-                false
+                false,
+                "phimHoatHinh"
+            );
+            deactivateControlButton(
+                phimHoatHinhIndex,
+                phimHoatHinh,
+                ".button-phimhoathinh-prev",
+                ".button-phimhoathinh-next"
             );
         });
     });
