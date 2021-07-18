@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MOVIES.NET</title>
+        <link rel="stylesheet" href="./css/index.css" />
+        <link rel="shortcut icon" href="./img/movie-icon.png" />
+        <script src="https://use.fontawesome.com/eb06b48c58.js"></script>
+    </head>
+    <body>
+        <div class="loading">
+            <img src="./img/loading-film.svg" alt="Loading" />
+        </div>
+        <div class="container">
+            <header>
+                <a class="header-brand" href="./index.html"
+                    ><img src="./img/movie-icon.png" alt="Movies" />
+                    <h2>MOVIES.NET</h2>
+                </a>
+                <span class="fa fa-bars btn-open"></span>
+                <ul class="header-list">
+                    <span class="btn-close fa fa-times-circle-o"></span>
+                    <li class="header-list__item active">
+                        <a href="#main">trang chủ</a>
+                    </li>
+                    <li class="header-list__item">
+                        <a href="#main">phim bộ</a>
+                    </li>
+                    <li class="header-list__item">
+                        <a href="#main">phim lẻ</a>
+                    </li>
+                    <li class="header-list__item">
+                        <a href="#main">phim chiếu rạp</a>
+                    </li>
+                    <li class="header-list__item">
+                        <a href="#main">phim hoạt hình</a>
+                    </li>
+                </ul>
+            </header>
+            <main id="main">
+                <div class="search-bar">
+                    <input
+                        class="search-bar__text"
+                        placeholder="Nhập tên phim hoặc thể loại phim muốn tìm..."
+                        type="text"
+                    />
+                    <input
+                        class="search-bar__submit"
+                        type="submit"
+                        value="Tìm kiếm"
+                    />
+                </div>
+                <div class="loading-screen">
+                    <img src="./img/loading-film.svg" alt="Loading" />
+                </div>
+                <div class="xemPhim section">
+                    <div class="phim-subset">
+                        <h1 class="movies-name"></h1>
+                        <div class="movies-details">
+                            <iframe
+                                class="movies-iframe"
+                                src=""
+                                frameborder="0"
+                                allowfullscreen="true"
+                            ></iframe>
+                            <h5 class="movies-list-title">Chọn tập phim</h5>
+                            <ul class="movies-episodes"></ul>
+                        </div>
+                        <a
+                            href="./index.html"
+                            class="button button__back-to-home"
+                            ><i class="fa fa-home" aria-hidden="true"></i> trang
+                            chủ</a
+                        >
+                    </div>
+                </div>
+                <div class="timKiem section">
+                    <div class="phim-subset">
+                        <h1 class="search-result">KẾT QUẢ TÌM KIẾM</h1>
+                        <ul class="timKiem-list phim-list"></ul>
+                        <div class="phim-subset__button timKiem__button">
+                            <div
+                                class="
+                                    phim-subset__button-btn
+                                    button-prev button-timkiem-prev
+                                "
+                            >
+                                <i
+                                    class="fa fa-chevron-circle-left"
+                                    aria-hidden="true"
+                                ></i>
+                                Previous
+                            </div>
+                            <div
+                                class="
+                                    phim-subset__button-btn
+                                    button-next button-timkiem-next
+                                "
+                            >
+                                Next
+                                <i
+                                    class="fa fa-chevron-circle-right"
+                                    aria-hidden="true"
+                                ></i>
+                            </div>
+                        </div>
+                        <a
+                            href="./index.html"
+                            class="button button__back-to-home"
+                            ><i class="fa fa-home" aria-hidden="true"></i> trang
+                            chủ</a
+                        >
+                    </div>
+                </div>
+                <div class="phimMoi section section-type">
+                    <div class="phimBoMoi phim-subset">
+                        <h1>PHIM BỘ MỚI</h1>
+                        <ul class="phimBoMoi-list phim-list"></ul>
+                    </div>
+                    <div class="phimLeMoi phim-subset">
+                        <h1>PHIM LẺ MỚI</h1>
+                        <ul class="phimLeMoi-list phim-list"></ul>
+                    </div>
+                    <div class="phimChieuRap phim-subset">
+                        <h1>PHIM CHIẾU RẠP</h1>
+                        <ul class="phimChieuRapMoi-list phim-list"></ul>
+                    </div>
+                    <div class="phimHoatHinh phim-subset">
+                        <h1>PHIM HOẠT HÌNH</h1>
+                        <ul class="phimHoatHinhMoi-list phim-list"></ul>
+                    </div>
+                </div>
+                <div class="phimBo section phim-subset section-type">
+                    <h1>phim bộ mới cập nhật</h1>
+                    <ul class="phimBo-list phim-list"></ul>
+                    <div class="phim-subset__button">
+                        <div
+                            class="
+                                phim-subset__button-btn
+                                button-prev button-phimbo-prev
+                            "
+                        >
+                            <i
+                                class="fa fa-chevron-circle-left"
+                                aria-hidden="true"
+                            ></i>
+                            Previous
+                        </div>
+                        <div
+                            class="
+                                phim-subset__button-btn
+                                button-next button-phimbo-next
+                            "
+                        >
+                            Next
+                            <i
+                                class="fa fa-chevron-circle-right"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="phimLe section phim-subset section-type">
+                    <h1>phim lẻ mới cập nhật</h1>
+                    <ul class="phimLe-list phim-list"></ul>
+                    <div class="phim-subset__button">
+                        <div
+                            class="
+                                phim-subset__button-btn
+                                button-prev button-phimle-prev
+                            "
+                        >
+                            <i
+                                class="fa fa-chevron-circle-left"
+                                aria-hidden="true"
+                            ></i>
+                            Previous
+                        </div>
+                        <div
+                            class="
+                                phim-subset__button-btn
+                                button-next button-phimle-next
+                            "
+                        >
+                            Next
+                            <i
+                                class="fa fa-chevron-circle-right"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="phimChieuRap section phim-subset section-type">
+                    <h1>phim chiếu rạp mới cập nhật</h1>
+                    <ul class="phimChieuRap-list phim-list"></ul>
+                    <div class="phim-subset__button">
+                        <div
+                            class="
+                                phim-subset__button-btn
+                                button-prev button-phimchieurap-prev
+                            "
+                        >
+                            <i
+                                class="fa fa-chevron-circle-left"
+                                aria-hidden="true"
+                            ></i>
+                            Previous
+                        </div>
+                        <div
+                            class="
+                                phim-subset__button-btn
+                                button-next button-phimchieurap-next
+                            "
+                        >
+                            Next
+                            <i
+                                class="fa fa-chevron-circle-right"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="phimHoatHinh section phim-subset section-type">
+                    <h1>phim hoạt hình mới cập nhật</h1>
+                    <ul class="phimHoatHinh-list phim-list"></ul>
+                    <div class="phim-subset__button">
+                        <div
+                            class="
+                                phim-subset__button-btn
+                                button-prev button-phimhoathinh-prev
+                            "
+                        >
+                            <i
+                                class="fa fa-chevron-circle-left"
+                                aria-hidden="true"
+                            ></i>
+                            Previous
+                        </div>
+                        <div
+                            class="
+                                phim-subset__button-btn
+                                button-next button-phimhoathinh-next
+                            "
+                        >
+                            Next
+                            <i
+                                class="fa fa-chevron-circle-right"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <ul>
+                    <li class="footer-list__item">
+                        <a href="#main">Phim bộ</a>
+                    </li>
+                    <li class="footer-list__item">
+                        <a href="#main">Phim lẻ</a>
+                    </li>
+                    <li class="footer-list__item">
+                        <a href="#main">Phim chiếu rạp</a>
+                    </li>
+                    <li class="footer-list__item">
+                        <a href="#main">Phim hoạt hình</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <i
+                            class="fa fa-facebook-official"
+                            aria-hidden="true"
+                        ></i
+                        >Facebook
+                    </li>
+                    <li>
+                        <i class="fa fa-twitter-square" aria-hidden="true"></i
+                        >Twitter
+                    </li>
+                    <li>
+                        <i class="fa fa-instagram" aria-hidden="true"></i
+                        >Instagram
+                    </li>
+                </ul>
+                <h5>2021 Designed by Tran Phuong Dinh</h5>
+            </footer>
+        </div>
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"
+        ></script>
+        <script src="./js/index.js"></script>
+    </body>
+</html>
