@@ -92,7 +92,12 @@ window.addEventListener("load", function () {
         $(sectionsType[0]).fadeIn(0);
         $(".loading-screen").fadeOut(0);
 
-        const NUMBER_FILM_PER_PAGE = 30;
+        let NUMBER_FILM_PER_PAGE;
+
+        if (window.innerWidth >= 992) NUMBER_FILM_PER_PAGE = 30;
+        else if (window.innerWidth >= 576) NUMBER_FILM_PER_PAGE = 20;
+        else NUMBER_FILM_PER_PAGE = 10;
+
         let ketQuaTimKiem = [];
 
         let phimBoIndex = 0,
@@ -170,10 +175,17 @@ window.addEventListener("load", function () {
                                     episodeNumber =
                                         phimHoatHinh[index].episode[j].episode;
 
-                                $(".movies-episodes").html(
-                                    $(".movies-episodes").html() +
-                                        `<li class="movies-episodes__item" data-url=${episodes[j].url}>${episodeNumber}</li>`
-                                );
+                                if (j == 0) {
+                                    $(".movies-episodes").html(
+                                        $(".movies-episodes").html() +
+                                            `<li class="movies-episodes__item active" data-url=${episodes[j].url}>${episodeNumber}</li>`
+                                    );
+                                } else {
+                                    $(".movies-episodes").html(
+                                        $(".movies-episodes").html() +
+                                            `<li class="movies-episodes__item" data-url=${episodes[j].url}>${episodeNumber}</li>`
+                                    );
+                                }
                             }
 
                             for (
@@ -204,6 +216,20 @@ window.addEventListener("load", function () {
                                             "src",
                                             movieUrl
                                         );
+
+                                        for (
+                                            let k = 0;
+                                            k <
+                                            $(".movies-episodes__item").length;
+                                            k++
+                                        ) {
+                                            $(
+                                                $(".movies-episodes__item")[k]
+                                            ).removeClass("active");
+                                        }
+                                        $(
+                                            $(".movies-episodes__item")[j]
+                                        ).addClass("active");
                                     }
                                 );
                             }

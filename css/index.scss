@@ -161,7 +161,7 @@ header {
         @media (max-width: 992px) {
             &.active {
                 transform: none;
-                box-shadow: 0 0 1000px 250px $color-black;
+                box-shadow: 0 0 2000px 200px $color-black;
             }
 
             transform: translateX(100%);
@@ -363,6 +363,11 @@ main {
                     margin-top: 10px;
                     cursor: pointer;
                     &:hover {
+                        background-color: $color-red-hover;
+                    }
+
+                    &.active {
+                        box-shadow: 0px 0px 5px 2px $color-red;
                         background-color: $color-red-hover;
                     }
 
