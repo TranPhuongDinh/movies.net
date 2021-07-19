@@ -135,7 +135,6 @@ window.addEventListener("load", function () {
                                 movieUrl = phimLe[index].episode[0].url;
                             }
 
-                            console.log(theloai, index);
                             $(".movies-iframe").attr("src", movieUrl);
                             $(".movies-name").html(
                                 "XEM PHIM " + movieName.toUpperCase()
