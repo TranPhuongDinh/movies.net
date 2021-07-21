@@ -61,6 +61,7 @@ window.addEventListener("load", function () {
 
     for (let i = 0; i < headerItems.length; i++) {
         $(headerItems[i]).click(function () {
+            window.scrollTo(0, 0);
             if (window.innerWidth <= 992) {
                 $(".header-list").removeClass("active");
             }
@@ -74,6 +75,7 @@ window.addEventListener("load", function () {
 
     for (let i = 0; i < footerItems.length; i++) {
         $(footerItems[i]).click(function () {
+            window.scrollTo(0, 0);
             hideAllSections(sections);
             $(sectionsType[i + 1]).fadeIn(0);
         });
@@ -109,6 +111,7 @@ window.addEventListener("load", function () {
         function addClickEventForfilmItems() {
             for (let i = 0; i < $(".phim-list__item").length; i++) {
                 $($(".phim-list__item")[i]).click(function () {
+                    window.scrollTo(0, 0);
                     hideAllSections(sections);
                     $(".xemPhim").fadeIn(0);
                     $(".movies-iframe").attr("src", "");
@@ -194,12 +197,28 @@ window.addEventListener("load", function () {
                                 if (j == 0) {
                                     $(".movies-episodes").html(
                                         $(".movies-episodes").html() +
-                                            `<li class="movies-episodes__item active" data-url=${episodes[j].url}>${episodeNumber}</li>`
+                                            `<a href="#${
+                                                removeVietnameseTones(
+                                                    movieName
+                                                ) + episodeNumber
+                                            }">
+												<li class="movies-episodes__item active" data-url=${
+                                                    episodes[j].url
+                                                }>${episodeNumber}</li>
+											</a>`
                                     );
                                 } else {
                                     $(".movies-episodes").html(
                                         $(".movies-episodes").html() +
-                                            `<li class="movies-episodes__item" data-url=${episodes[j].url}>${episodeNumber}</li>`
+                                            `<a href="#${
+                                                removeVietnameseTones(
+                                                    movieName
+                                                ) + episodeNumber
+                                            }">
+												<li class="movies-episodes__item" data-url=${
+                                                    episodes[j].url
+                                                }>${episodeNumber}</li>
+											</a>`
                                     );
                                 }
                             }
@@ -275,14 +294,16 @@ window.addEventListener("load", function () {
                 if (i >= phimList.length) break;
                 $(classPhimList).html(
                     $(classPhimList).html() +
-                        `<li class="phim-list__item" data-index=${i} data-theloai=${theloai}>
-						<img src="${phimList[i].imageUrl}" alt="${phimList[i].title}" />
-						<h4>${phimList[i].title}</h4>
-						<div class="info-tag">
-							<img src="./img/tag-icon.png" alt="tag" />
-							<span>${phimList[i].category}</span>
-						</div>
-					</li>`
+                        `<a href="#${removeVietnameseTones(phimList[i].title)}">
+							<li class="phim-list__item" data-index=${i} data-theloai=${theloai}>
+								<img src="${phimList[i].imageUrl}" alt="${phimList[i].title}" />
+								<h4>${phimList[i].title}</h4>
+								<div class="info-tag">
+									<img src="./img/tag-icon.png" alt="tag" />
+									<span>${phimList[i].category}</span>
+								</div>
+							</li>
+						</a>`
                 );
             }
 
@@ -312,14 +333,22 @@ window.addEventListener("load", function () {
         function renderFoundFilms(ketQuaTimKiem, index, timKiemList) {
             $(timKiemList).html(
                 $(timKiemList).html() +
-                    `<li class="phim-list__item" data-index=${ketQuaTimKiem[index].index} data-theloai=${ketQuaTimKiem[index].theloai}>
-					<img src="${ketQuaTimKiem[index].phim.imageUrl}" alt="${ketQuaTimKiem[index].phim.title}" />
-					<h4>${ketQuaTimKiem[index].phim.title}</h4>
-					<div class="info-tag">
-						<img src="./img/tag-icon.png" alt="tag" />
-						<span>${ketQuaTimKiem[index].phim.category}</span>
-					</div>
-				</li>`
+                    `<a href="#${removeVietnameseTones(
+                        ketQuaTimKiem[index].phim.title
+                    )}">
+						<li class="phim-list__item" data-index=${
+                            ketQuaTimKiem[index].index
+                        } data-theloai=${ketQuaTimKiem[index].theloai}>
+							<img src="${ketQuaTimKiem[index].phim.imageUrl}" alt="${
+                        ketQuaTimKiem[index].phim.title
+                    }" />
+							<h4>${ketQuaTimKiem[index].phim.title}</h4>
+							<div class="info-tag">
+								<img src="./img/tag-icon.png" alt="tag" />
+								<span>${ketQuaTimKiem[index].phim.category}</span>
+							</div>
+						</li>
+					</a>`
             );
         }
 
