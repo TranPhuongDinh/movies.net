@@ -174,22 +174,22 @@ header {
             transform: translateX(100%);
             flex-direction: column;
             position: absolute;
+            padding: 20px 0;
             top: 0;
             right: 0;
             height: 100vh;
             width: 200px;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: initial;
             background-color: $color-black;
             transition: transform 0.25s ease-in;
+
             .btn-close {
                 display: block;
-                position: absolute;
-                top: 30px;
-                left: 20px;
                 color: $color-red;
                 font-size: 40px;
                 cursor: pointer;
+                margin: 0 0 20vh 20px;
             }
         }
 
@@ -431,13 +431,17 @@ main {
         .phim-list {
             align-self: left;
             display: grid;
-            grid-template-columns: auto auto auto auto auto;
-
+            grid-template-columns: auto auto auto auto auto auto;
+            justify-content: center;
             grid-gap: 60px;
+
+            @media (max-width: 1700px) {
+                grid-template-columns: auto auto auto auto auto;
+                grid-gap: 50px;
+            }
 
             @media (max-width: 1500px) {
                 grid-template-columns: auto auto auto auto;
-                justify-content: center;
                 grid-gap: 50px;
             }
 
@@ -454,6 +458,7 @@ main {
             }
 
             li {
+                padding-bottom: 5px;
                 &:hover {
                     box-shadow: 0px 0px 5px 2px $color-red;
                 }
@@ -470,6 +475,8 @@ main {
                 }
 
                 h4 {
+                    width: 100%;
+                    text-overflow: ellipsis;
                     color: #fff;
                     margin: 15px 0;
                     padding: 0 10px;
